@@ -753,3 +753,85 @@ html.lenis, html.lenis body { height: auto; }
   .btn { white-space: normal; text-align: center; height: auto; min-height: var(--h); padding-block: 0.875rem; line-height: 1.4; }
   .situacoes__head .btn { width: 100%; }
 }
+
+/* =========================================================
+   Dobras claras (marfim) e dourada — quebra de ritmo
+   ========================================================= */
+.theme-light {
+  --bg: #f4eee3;
+  --surface: #fffaf2;
+  --text: #1b150f;
+  --text-2: #4d4337;
+  --muted: #857762;
+  --gold: #9a7232;
+  --line: rgba(124, 90, 40, .16);
+  --line-strong: rgba(124, 90, 40, .34);
+  --gold-grad: linear-gradient(135deg, #b98d48 0%, #8c6427 45%, #a87d3a 75%, #c79d58 100%);
+  color: var(--text-2);
+  background:
+    radial-gradient(60% 50% at 85% 0%, rgba(201, 152, 78, .14), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(201, 152, 78, .10), transparent 70%),
+    var(--bg);
+}
+.theme-light::after {
+  /* linha dourada fina nas bordas da dobra */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185, 141, 72, .55), transparent);
+}
+.theme-light::before { display: none; }
+.areas.theme-light { background:
+    radial-gradient(60% 50% at 85% 0%, rgba(201, 152, 78, .14), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(201, 152, 78, .10), transparent 70%),
+    var(--bg); }
+
+/* Cards em fundo claro */
+.theme-light .card {
+  background: #fffbf5;
+  border-color: rgba(124, 90, 40, .14);
+  box-shadow: 0 1.5rem 3rem -2.25rem rgba(70, 45, 10, .35);
+}
+.theme-light .card:hover { border-color: rgba(154, 114, 50, .45); box-shadow: 0 2rem 3.5rem -2rem rgba(70, 45, 10, .4); }
+.theme-light .card::before { background: radial-gradient(20rem circle at var(--mx) var(--my), rgba(201, 152, 78, .12), transparent 60%); }
+.theme-light .card__icon {
+  color: #f1dba6;
+  background: linear-gradient(145deg, #241c14, #120e0a);
+  border-color: rgba(154, 114, 50, .5);
+  box-shadow: 0 0.75rem 1.5rem -0.75rem rgba(30, 20, 5, .45);
+}
+.theme-light .card p { color: var(--text-2); }
+.theme-light .areas__note strong { color: var(--text); }
+.theme-light .dot { background: var(--gold); box-shadow: 0 0 0 0.3125rem rgba(154, 114, 50, .15); }
+
+/* Etapas em fundo claro: números em círculo escuro com dourado */
+.theme-light .step__num {
+  color: #f1dba6;
+  background: radial-gradient(circle at 30% 30%, #2a2117, #110d0a);
+  border-color: rgba(154, 114, 50, .55);
+  box-shadow: 0 0 0 0.5rem var(--bg), 0 0.875rem 1.875rem -0.75rem rgba(70, 45, 10, .5);
+}
+.theme-light .step p { color: var(--text-2); }
+
+/* Faixa dourada (valores) */
+.theme-gold {
+  --line: rgba(26, 18, 9, .16);
+  background: linear-gradient(120deg, #c9a15a 0%, #e9cf94 30%, #d8b673 55%, #b98d48 80%, #e0c180 100%);
+  border-block: 0;
+  position: relative; overflow: hidden;
+}
+.theme-gold::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .28) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: sheen 7s var(--ease) infinite;
+}
+@keyframes sheen { 0%, 55% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.theme-gold .valor h3 { color: #1a1209; }
+.theme-gold .valor svg { color: #1a1209; opacity: .85; }
+.theme-gold .valor + .valor { border-color: rgba(26, 18, 9, .16); }
+
+/* FAQ volta a ter respiro após a dobra clara */
+.faq { padding-top: clamp(5.625rem, 11vw, 9.375rem); }
+
+@media (max-width: 640px) {
+  .theme-gold .valor + .valor { border-top-color: rgba(26, 18, 9, .16); }
+}
